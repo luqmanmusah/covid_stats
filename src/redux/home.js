@@ -6,6 +6,7 @@ const CLEAR_COUNTRY = 'covid_19_stats/home/CLEAR_COUNTRY';
 const FILTER_REGION = 'covid_19_stats/home/FILTER_REGION';
 
 const initialState = [];
+// const baseUrl = 'https://api.covid19tracking.narrativa.com/api/2020-03-10/country';
 
 // Action Creators
 const getCountry = (payload) => (
@@ -45,16 +46,17 @@ const homeReducer = (state = initialState, action) => {
 };
 
 // Thunks
-export const loadMisionsThunk = () => (
+export const loadCountryThunk = () => (
   async (dispatch) => {
     const req = await axios
-      .get('https://api.spacexdata.com/v3/missions?limit=10')
+      .get('https://api.covid19tracking.narrativa.com/api/2020-03-10/country')
       .then((response) => {
         const data = response.data.map((item) => ({
-          name: item.mission_name,
-          id: item.mission_id,
-          description: item.description,
-          join: false,
+          name: item.name,
+          id: item.id,
+          regions: item.regions,
+          cases: item.today_confirmed,
+          death: item.today_deaths,
         }));
         return data;
       });
