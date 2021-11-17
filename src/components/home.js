@@ -1,16 +1,17 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import { loadCountryThunk } from '../redux/home';
+// import { NavLink } from 'react-router-dom';
+import { loadCountryDetail } from '../redux/home';
 import Header from './header';
+import Countries from '../redux/countries';
 
-export default function home() {
+export default function Home() {
   const state = useSelector((state) => state.homeReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (state.length === 0) {
-      dispatch(loadCountryThunk());
+      dispatch(loadCountryDetail());
     }
   }, []);
   return (
@@ -25,20 +26,11 @@ export default function home() {
       </div>
       <p>State By Country</p>
       <ul>
-        {state.map((country) => (
-          <li>
-            <NavLink>
-              <div>
-                <div>
-                  <h2>{country.name}</h2>
-                  <p>
-                    {country.case}
-                    {' '}
-                    Cases
-                  </p>
-                </div>
-              </div>
-            </NavLink>
+        {Countries.map((country) => (
+          <li key={country.id}>
+            <div>
+              {country.name}
+            </div>
           </li>
         ))}
       </ul>
