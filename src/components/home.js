@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { NavLink } from 'react-router-dom';
-import { loadCountryDetail } from '../redux/home';
-import Header from './header';
+import { NavLink } from 'react-router-dom';
+import { loadCountryDetail, filterRegion } from '../redux/home';
 import Countries from '../redux/countries';
 
 export default function Home() {
@@ -11,12 +10,14 @@ export default function Home() {
 
   useEffect(() => {
     if (state.length === 0) {
-      dispatch(loadCountryDetail());
+      dispatch(loadCountryDetail(Countries[1]));
     }
   }, []);
+  const selectCountry = (id) => {
+    dispatch(filterRegion(id));
+  };
   return (
     <div>
-      <Header />
       <div>
         <div>
           <h2>Covid_19</h2>
@@ -28,9 +29,21 @@ export default function Home() {
       <ul>
         {Countries.map((country) => (
           <li key={country.id}>
-            <div>
-              {country.name}
-            </div>
+            <NavLink to="/details" onClick={() => selectCountry(country.id)}>
+              <div>
+                <div>
+                  <h2>
+                    {country.name}
+                  </h2>
+                  <p>
+                    {country.case}
+                    {' '}
+                    Cases
+                  </p>
+                </div>
+              </div>
+            </NavLink>
+
           </li>
         ))}
       </ul>

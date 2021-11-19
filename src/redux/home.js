@@ -24,23 +24,27 @@ const clearCountry = (id) => (
   }
 );
 
-const filterRegion = (payload) => (
+const filterRegion = (id) => (
   {
     type: FILTER_REGION,
-    payload,
+    id,
   }
 );
 
 // Reducer
 const homeReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_COUNTRY.name:
-      return [...state, ...action.payload];
+    case GET_COUNTRY:
+      return [...state, action.payload];
 
       // case CLEAR_COUNTRY:
       //   return state.map((mission) => (mission.id !== action.id ? mission
       //     : { ...mission, join: !mission.join }));
 
+    case FILTER_REGION: {
+      const country = state.filter((countryDetail) => countryDetail.id === action.id);
+      return [country[0]];
+    }
     default:
       return state;
   }
@@ -49,19 +53,19 @@ const homeReducer = (state = initialState, action) => {
 export const loadCountryDetail = (country) => (
   async (dispatch) => {
     const req = await axios
-      .get(`${baseUrl}/${country}`)
+      .get(`${baseUrl}/${country.name}`)
       .then((response) => {
-        const data = response.data.map((country) => ({
-          name: country.name,
-          id: country.id,
-          regions: country.regions,
-          cases: country.today_confirmed,
-          death: country.today_deaths,
-        }));
+        // console.log(response.data.total);
+        const data = {
+          name: response.data.total.name,
+          id: response.data.total.id,
+          regions: response.data.total.regions,
+          cases: response.data.total.today_confirmed,
+          death: response.data.total.today_deaths,
+        };
         return data;
       });
     dispatch(getCountry(req));
-    console.log(req, 'data');
   }
 );
 

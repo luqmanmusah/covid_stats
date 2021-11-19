@@ -6,7 +6,6 @@ function Header() {
     <header>
       <div className="header-container">
         <div className="img-h1">
-          <img className="logo" id="logo" src="https://cdn-icons-png.flaticon.com/512/3212/3212608.png" alt="" />
           <h1><NavLink to="/">Covid_19</NavLink></h1>
         </div>
         <nav>
