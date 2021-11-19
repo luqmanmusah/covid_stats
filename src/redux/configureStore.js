@@ -5,12 +5,10 @@ import {
 } from 'redux';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
-import { missionReducer } from './missions/missionReducer';
-import rocketReducer, { getRockets } from './rockets/rockets';
+import { homeReducer } from './home';
 
 const reducer = combineReducers({
-  rockets: rocketReducer,
-  missionReducer,
+  homeReducer,
 });
 
 const store = createStore(
@@ -19,6 +17,6 @@ const store = createStore(
   applyMiddleware(logger, thunk),
 );
 
-store.dispatch(getRockets());
+// store.dispatch(homeReducer());
 
 export default store;

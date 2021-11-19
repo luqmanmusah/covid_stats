@@ -1,31 +1,21 @@
 import React from 'react';
 import {
-  Switch,
   Route,
 } from 'react-router-dom';
 import Header from './components/header';
-import MyProfile from './components/my_Profile';
-import Missions from './components/missions';
-import RocketElement from './components/RocketElement';
+import Home from './components/home';
+import Details from './components/details';
 
 function App() {
   return (
-    <>
-
+    <div className="App">
       <Header />
-      <Switch>
-        <Route exact path="/">
-          <RocketElement />
-        </Route>
-        <Route path="/myProfile">
-          <MyProfile />
-        </Route>
-        <Route path="/mission">
-          <Missions />
-        </Route>
-      </Switch>
-
-    </>
+      <Route exact path="/">
+        <Home />
+      </Route>
+      <Route path="/details" />
+      <Details />
+    </div>
   );
 }
 
