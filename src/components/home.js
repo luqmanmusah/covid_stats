@@ -1,21 +1,24 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { loadCountryDetail, filterRegion } from '../redux/home';
-import Countries from '../redux/countries';
+import { loadCountryDetail, getCountry } from '../redux/home';
+// import Countries from '../redux/countries';
+import Details from './details';
 
 export default function Home() {
-  const state = useSelector((state) => state.homeReducer);
+  const state = useSelector((state) => state.homeReducer.covid_data);
   const dispatch = useDispatch();
+  console.log(state);
 
   useEffect(() => {
     if (state.length === 0) {
-      dispatch(loadCountryDetail(Countries[1]));
+      loadCountryDetail().then((data) => {
+        console.log(data);
+        dispatch(getCountry(data));
+      });
     }
   }, []);
-  const selectCountry = (id) => {
-    dispatch(filterRegion(id));
-  };
+
   return (
     <div>
       <div>
@@ -27,23 +30,24 @@ export default function Home() {
       </div>
       <p>State By Country</p>
       <ul>
-        {Countries.map((country) => (
-          <li key={country.id}>
-            <NavLink to="/details" onClick={() => selectCountry(country.id)}>
+        {state.map((object) => (
+          <li key={object.id}>
+            <NavLink to={`/details/${object.id}`} onClick={() => <Details id={object.id} />}>
               <div>
                 <div>
                   <h2>
-                    {country.name}
+                    {object.country}
                   </h2>
                   <p>
-                    {country.case}
+                    {object.data.map((obj) => (
+                      <p key={obj.id}>{obj.today_confirmed}</p>
+                    ))}
                     {' '}
                     Cases
                   </p>
                 </div>
               </div>
             </NavLink>
-
           </li>
         ))}
       </ul>

@@ -12,7 +12,7 @@ const Countries = [
     id: 3,
   },
   {
-    name: 'Ivory Coast',
+    name: 'Mali',
     id: 4,
   },
   {
