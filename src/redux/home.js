@@ -77,23 +77,6 @@ export const loadCountryDetail = () => {
   });
   console.log(request);
   return Promise.all(request);
-
-  // return async (dispatch) => {
-  //   const req = await axios
-  //     .get(`${baseUrl}/${country.name}`)
-  //     .then((response) => {
-  //       console.log(response.data.total);
-  //       const data = {
-  //         name: response.data.total.name,
-  //         id: response.data.total.id,
-  //         regions: response.data.total.regions,
-  //         cases: response.data.total.today_confirmed,
-  //         death: response.data.total.today_deaths,
-  //       };
-  //       return data;
-  //     });
-  //   dispatch(getCountry(req));
-  // };
 };
 
 export {

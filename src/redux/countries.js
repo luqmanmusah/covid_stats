@@ -1,7 +1,7 @@
 import ghana from '../assets/ghana.png';
 import SouthAfrica from '../assets/SouthAfrica.png';
-import nigeria from '../assets/nigeria.jpg';
-import senegal from '../assets/senegal.png';
+import nigeria from '../assets/nigeria.png';
+import Senegal from '../assets/Senegal.png';
 import sierraLeone from '../assets/sierraLeone.png';
 import togo from '../assets/togo.png';
 
@@ -29,7 +29,7 @@ const Countries = [
   {
     name: 'Senegal',
     id: 5,
-    senegal,
+    Senegal,
   },
   {
     name: 'Sierra Leone',
