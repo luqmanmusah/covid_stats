@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { ArrowRightCircle } from 'react-bootstrap-icons';
 import { loadCountryDetail, getCountry } from '../redux/home';
 // import Countries from '../redux/countries';
 import Details from './details';
+import style from './style.module.css';
+import coronavirus from '../assets/coronavirus.jpg';
 
 export default function Home() {
   const state = useSelector((state) => state.homeReducer.covid_data);
@@ -21,19 +24,21 @@ export default function Home() {
 
   return (
     <div>
-      <div>
-        <div>
+      <div className={style.intro}>
+        <img src={coronavirus} className={style.introImg} alt="Corona" />
+        <div className={style.introDetails}>
           <h2>Covid_19</h2>
           <p>Number of Cases</p>
           <p>in 2020-03-10</p>
         </div>
       </div>
-      <p>State By Country</p>
-      <ul>
+      <p className={style.mid}>State By Country</p>
+      <ul className="countries">
         {state.map((object) => (
-          <li key={object.id}>
+          <li key={object.id} className="country">
             <NavLink to={`/details/${object.id}`} onClick={() => <Details id={object.id} />}>
-              <div>
+              <div className="countryName">
+                <ArrowRightCircle className="arrow" />
                 <div>
                   <h2>
                     {object.country}
@@ -47,6 +52,7 @@ export default function Home() {
                   </p>
                 </div>
               </div>
+              <img className="countryImg" src={object.imgUrl} alt="maps" />
             </NavLink>
           </li>
         ))}

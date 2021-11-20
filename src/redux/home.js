@@ -70,6 +70,7 @@ export const loadCountryDetail = () => {
       id: uuidv4(),
       data: openData,
       country: country.name,
+      imgUrl: country.img,
 
     };
     return outgoingData;
