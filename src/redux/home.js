@@ -1,6 +1,9 @@
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-case-declarations */
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import Countries from './countries';
+import '../App.css';
 
 // Actions
 const GET_COUNTRY = 'covid_19_stats/home/GET_COUNTRY';
@@ -45,14 +48,14 @@ const homeReducer = (state = initialState, action) => {
       //   return state.map((mission) => (mission.id !== action.id ? mission
       //     : { ...mission, join: !mission.join }));
 
-    case FILTER_REGION: {
+    case FILTER_REGION:
       const country = state.filter((countryDetail) => countryDetail.id === action.id);
       return [country[0]];
-    }
     default:
       return state;
   }
 };
+export const selectCountry = (id) => filterRegion(id);
 
 export const loadCountryDetail = () => {
   const request = Countries.map(async (country) => {
@@ -70,12 +73,13 @@ export const loadCountryDetail = () => {
       id: uuidv4(),
       data: openData,
       country: country.name,
+      region: country.region,
       imgUrl: country.img,
 
     };
     return outgoingData;
   });
-  console.log(request);
+  // console.log(request);
   return Promise.all(request);
 };
 

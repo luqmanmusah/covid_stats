@@ -1,10 +1,11 @@
+/* eslint-disable no-unused-expressions */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { ArrowRightCircle } from 'react-bootstrap-icons';
-import { loadCountryDetail, getCountry } from '../redux/home';
+import { loadCountryDetail, getCountry, selectCountry } from '../redux/home';
 // import Countries from '../redux/countries';
-import Details from './details';
+// import Details from './details';
 import style from './style.module.css';
 import coronavirus from '../assets/coronavirus.jpg';
 
@@ -13,11 +14,21 @@ export default function Home() {
   const dispatch = useDispatch();
   console.log(state);
 
+  const dark = () => {
+    const con = document.querySelectorAll('.country');
+    for (let j = 0; j < con.length; j += 4) {
+      if (j % 2 === 0) {
+        j + 1 < con.length && (con[j + 1].classList.add('dark'));
+        j + 2 < con.length && (con[j + 2].classList.add('dark'));
+      }
+    }
+  };
   useEffect(() => {
     if (state.length === 0) {
       loadCountryDetail().then((data) => {
-        console.log(data);
         dispatch(getCountry(data));
+      }).then(() => {
+        dark();
       });
     }
   }, []);
@@ -36,7 +47,7 @@ export default function Home() {
       <ul className="countries">
         {state.map((object) => (
           <li key={object.id} className="country">
-            <NavLink to={`/details/${object.id}`} onClick={() => <Details id={object.id} />}>
+            <NavLink to="/details" onClick={() => selectCountry(object.id)}>
               <div className="countryName">
                 <ArrowRightCircle className="arrow" />
                 <div>

@@ -84,15 +84,14 @@ ul {
     padding: 10px;
   }
   
-  .regions {
+  .situations {
     margin: 0;
     color: white;
   }
   
-  .region {
+  .object {
     display: flex;
     padding: 5px;
     align-items: center;
     justify-content: space-between;
   }
-  
