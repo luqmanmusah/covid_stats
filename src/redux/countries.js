@@ -1,4 +1,4 @@
-import ghana from '../assets/ghana.png';
+import france from '../assets/france.png';
 import SouthAfrica from '../assets/SouthAfrica.png';
 import nigeria from '../assets/nigeria.png';
 import uk from '../assets/uk.png';
@@ -9,7 +9,7 @@ const Countries = [
   {
     name: 'France',
     id: 1,
-    img: ghana,
+    img: france,
   },
   {
     name: 'Germany',

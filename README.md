@@ -1,15 +1,12 @@
-# Space Travellers' Hub
+# Covid_19 Global Stats
 
-A Prrojest that works on a real live datafrom the SpaceX API. A web application that provides commercial and scientific space travel services.
-The application allows users to book rockets and join selected space missions.
-
-![Image](./img/r1.png)
-![Image](./img/r2.png)
-![Image](./img/r3.png)
-![Image](./img/test.png)
+A Project that works on a real live data from the COVID_19 Tracking Project API. A web application that displays the covid situation in countries and detail descriptions on selected countries.
+The application allows users to view the number of cases in selected countries and cases by regions in those selected countries.
 
 
-[Live Link](https://trusting-poitras-39fd6a.netlify.app/)
+
+
+[Live Link]()
 
 ## Built With
 
@@ -23,7 +20,7 @@ The application allows users to book rockets and join selected space missions.
 To get a local copy up and running clone the repo and run
 
 ```
-https://github.com/Whoistolu/Space-Traveler-Hub
+https://github.com/luqmanmusah/covid_19_stats
 
 ```
 
@@ -33,20 +30,11 @@ https://github.com/Whoistolu/Space-Traveler-Hub
 
 ### Usage
 
-to serve the application on `localhost` run
+To serve the application on `localhost` run
 
 `npm start`
 
-## Authors1
-
-👤 **Author1**
-
-- Name: Ajise Toluwase
-- GitHub: [@githubhandle](https://github.com/Whoistolu)
-- Twitter: [@twitterhandle](https://twitter.com/Littletolu)
-- LinkedIn: [LinkedIn](https://www.linkedin.com/in/toluwase-ajise-9b40411b2/)
-
-👤 **Author2**
+## Author
 
 - GitHub: [@luqmanmusah](https://github.com/luqmanmusah)
 - LinkedIn: [Luqman Musah](https://www.linkedin.com/in/luqman-musah/)

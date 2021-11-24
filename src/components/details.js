@@ -34,10 +34,10 @@ export default function Details() {
         </div>
       </div>
       <p className={style.mid}>Country Situation</p>
-      <div className="situations">
-        {filteredState[0].data[0].regions.map((region) => (
-          <ul key={region.id}>
-            <li key={region.id}>{region.name}</li>
+      <ul className="situations">
+        {filteredState[0].data[0].regions.map((region, index) => (
+          <li key={region.id} className={index % 2 === 0 ? 'region light' : 'region dark'}>
+            <p key={region.id}>{region.name}</p>
 
             <div className={style.regCases}>
 
@@ -47,9 +47,9 @@ export default function Details() {
 
               <ArrowRightCircle />
             </div>
-          </ul>
+          </li>
         ))}
-      </div>
+      </ul>
 
     </>
   );
