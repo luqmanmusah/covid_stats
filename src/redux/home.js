@@ -47,15 +47,10 @@ const homeReducer = (state = initialState, action) => {
       // case CLEAR_COUNTRY:
       //   return state.map((mission) => (mission.id !== action.id ? mission
       //     : { ...mission, join: !mission.join }));
-
-    case FILTER_REGION:
-      const country = state.filter((countryDetail) => countryDetail.id === action.id);
-      return [country[0]];
     default:
       return state;
   }
 };
-export const selectCountry = (id) => filterRegion(id);
 
 export const loadCountryDetail = () => {
   const request = Countries.map(async (country) => {

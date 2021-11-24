@@ -13,8 +13,9 @@ function App() {
       <Route exact path="/">
         <Home />
       </Route>
-      <Route path="/details" />
-      <Details />
+      <Route path="/details">
+        <Details />
+      </Route>
     </div>
   );
 }

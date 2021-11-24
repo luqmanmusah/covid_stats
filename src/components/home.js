@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { ArrowRightCircle } from 'react-bootstrap-icons';
-import { loadCountryDetail, getCountry, selectCountry } from '../redux/home';
+import { loadCountryDetail, getCountry } from '../redux/home';
 // import Countries from '../redux/countries';
 // import Details from './details';
 import style from './style.module.css';
@@ -27,10 +27,11 @@ export default function Home() {
     if (state.length === 0) {
       loadCountryDetail().then((data) => {
         dispatch(getCountry(data));
-      }).then(() => {
-        dark();
-      });
+      }).then(
+        dark,
+      );
     }
+    dark();
   }, []);
 
   return (
@@ -47,7 +48,7 @@ export default function Home() {
       <ul className="countries">
         {state.map((object) => (
           <li key={object.id} className="country">
-            <NavLink to="/details" onClick={() => selectCountry(object.id)}>
+            <NavLink to={`/details/${object.id}`}>
               <div className="countryName">
                 <ArrowRightCircle className="arrow" />
                 <div>
