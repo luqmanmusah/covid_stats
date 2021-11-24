@@ -3,6 +3,10 @@
 A Project that works on a real live data from the COVID_19 Tracking Project API. A web application that displays the covid situation in countries and detail descriptions on selected countries.
 The application allows users to view the number of cases in selected countries and cases by regions in those selected countries.
 
+# Screenshots
+
+![home](https://user-images.githubusercontent.com/22328716/143272028-b9285aff-208e-44e4-84be-f38115febf3c.png)![detail](https://user-images.githubusercontent.com/22328716/143272063-174c759d-4bf1-4c4d-a2cb-5650288a09ac.png)
+
 
 
 ## Live Demo
