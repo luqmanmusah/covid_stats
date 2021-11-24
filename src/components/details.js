@@ -1,5 +1,4 @@
 import React from 'react';
-// import { useParams } from 'react-router';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { ArrowRightCircle } from 'react-bootstrap-icons';
@@ -9,12 +8,10 @@ export default function Details() {
   const state = useSelector((state) => state.homeReducer);
   const location = useLocation();
   const id = location.pathname.slice(9);
-  // const oneId = useParams().objectId;
 
   const filterRegion = (id) => {
     const country = state.covid_data.filter((countryDetail) => countryDetail.id
       === id);
-    console.log(country[0]);
     return [country[0]];
   };
 
@@ -30,7 +27,7 @@ export default function Details() {
           {' '}
           Cases
 
-          <p>in 2020-03-10</p>
+          <p>in 2020-10-10</p>
         </div>
       </div>
       <p className={style.mid}>Country Situation</p>

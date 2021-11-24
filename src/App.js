@@ -5,6 +5,7 @@ import {
 import Header from './components/header';
 import Home from './components/home';
 import Details from './components/details';
+import './index.css';
 
 function App() {
   return (

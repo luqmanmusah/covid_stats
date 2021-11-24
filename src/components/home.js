@@ -4,15 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { ArrowRightCircle } from 'react-bootstrap-icons';
 import { loadCountryDetail, getCountry } from '../redux/home';
-// import Countries from '../redux/countries';
-// import Details from './details';
 import style from './style.module.css';
 import coronavirus from '../assets/coronavirus.jpg';
 
 export default function Home() {
   const state = useSelector((state) => state.homeReducer.covid_data);
   const dispatch = useDispatch();
-  console.log(state);
 
   const dark = () => {
     const con = document.querySelectorAll('.country');
@@ -41,7 +38,7 @@ export default function Home() {
         <div className={style.introDetails}>
           <h2>Covid_19</h2>
           <p>Number of Cases</p>
-          <p>in 2020-03-10</p>
+          <p>in 2020-10-10</p>
         </div>
       </div>
       <p className={style.mid}>State By Country</p>

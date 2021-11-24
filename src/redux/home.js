@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-expressions */
-/* eslint-disable no-case-declarations */
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import Countries from './countries';
@@ -14,7 +12,7 @@ const initialState = {
   covid_data: [],
 };
 
-const baseUrl = 'https://api.covid19tracking.narrativa.com/api/2020-03-10/country';
+const baseUrl = 'https://api.covid19tracking.narrativa.com/api/2020-10-10/country';
 
 // Action Creators
 const getCountry = (payload) => (
@@ -43,10 +41,6 @@ const homeReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_COUNTRY:
       return { ...state, covid_data: action.payload };
-
-      // case CLEAR_COUNTRY:
-      //   return state.map((mission) => (mission.id !== action.id ? mission
-      //     : { ...mission, join: !mission.join }));
     default:
       return state;
   }
@@ -54,16 +48,10 @@ const homeReducer = (state = initialState, action) => {
 
 export const loadCountryDetail = () => {
   const request = Countries.map(async (country) => {
-    // const array = [];
-    // let outgoingData;
     const data = await axios
       .get(`${baseUrl}/${country.name}`);
-      // then((response) => {
-      // });
-    const { '2020-03-10': dates } = data.data.dates;
-    console.log(dates.countries);
+    const { '2020-10-10': dates } = data.data.dates;
     const openData = Object.entries(dates.countries).map((object) => object[1]);
-    console.log(openData);
     const outgoingData = {
       id: uuidv4(),
       data: openData,

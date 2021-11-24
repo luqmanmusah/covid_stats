@@ -6,7 +6,7 @@ const Header = () => (
   <div className="nav">
     <NavLink to="/" className="navBack">
       <ChevronCompactLeft className="navIcon" size={20} />
-      <p>2022</p>
+      <p>2020</p>
     </NavLink>
     <p className="navTitle">Covid_19</p>
     <div className="navAction">
