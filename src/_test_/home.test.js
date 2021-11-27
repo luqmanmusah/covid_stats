@@ -1,11 +1,15 @@
-import React from 'react';
 import { Provider } from 'react-redux';
+import { render, screen } from '@testing-library/react';
 import store from '../redux/configureStore';
-import App from '../App';
+import Home from '../components/home';
 
-const ReactTestRenderer = require('react-test-renderer');
-
-it('Creates a snapshot of the home component', () => {
-  const tree = ReactTestRenderer.create(<Provider store={store}><App /></Provider>).toJSON();
-  expect(tree).toMatchSnapshot();
+describe('Check that home component renders corrrectly', () => {
+  it('Renders  elements', () => {
+    render(
+      <Provider store={store}>
+        <Home />
+      </Provider>,
+    );
+    expect(screen.queryByText(/Countries/)).toBeNull();
+  });
 });
