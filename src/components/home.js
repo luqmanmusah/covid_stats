@@ -1,15 +1,17 @@
 /* eslint-disable no-unused-expressions */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { ArrowRightCircle } from 'react-bootstrap-icons';
 import { loadCountryDetail, getCountry } from '../redux/home';
 import style from './style.module.css';
 import coronavirus from '../assets/coronavirus.jpg';
+// import SearchBar from './search';
 
 export default function Home() {
   const state = useSelector((state) => state.homeReducer.covid_data);
   const dispatch = useDispatch();
+  const [searchInput, setSearch] = useState('');
 
   const dark = () => {
     const con = document.querySelectorAll('.country');
@@ -20,6 +22,7 @@ export default function Home() {
       }
     }
   };
+
   useEffect(() => {
     if (state.length === 0) {
       loadCountryDetail().then((data) => {
@@ -31,6 +34,17 @@ export default function Home() {
     dark();
   }, []);
 
+  const filteredState = state.filter(
+    (country) => country.country.toLowerCase().includes(searchInput.toLowerCase()),
+  );
+
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+  };
+
+  const BarStyling = {
+    width: '26.5rem', background: 'rgb(211, 29, 114)', border: 'none', padding: '0.5rem',
+  };
   return (
     <div>
       <div className={style.intro}>
@@ -41,9 +55,26 @@ export default function Home() {
           <p>in 2020-10-10</p>
         </div>
       </div>
-      <p className={style.mid}>State By Country</p>
+      <p className={style.mid}>Search By Country</p>
+      <div className="wrapper">
+        <div className="search-wrapper">
+          <input
+            style={BarStyling}
+            type="search"
+            name="search-form"
+            id="search-form"
+            className="search-input"
+            placeholder="Search By Country"
+            value={searchInput}
+            onChange={(e) => handleSearch(e)}
+          />
+
+        </div>
+
+      </div>
+
       <ul className="countries">
-        {state.map((object) => (
+        {filteredState.map((object) => (
           <li key={object.id} className="country">
             <NavLink to={`/details/${object.id}`}>
               <div className="countryName">
