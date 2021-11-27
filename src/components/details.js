@@ -1,80 +1,53 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
+import { ArrowRightCircle } from 'react-bootstrap-icons';
+import style from './style.module.css';
 
 export default function Details() {
-  const state = useSelector((state) => state.homeReducer.covid_data);
+  const state = useSelector((state) => state.homeReducer);
   const location = useLocation();
   const id = location.pathname.slice(9);
 
-  // state.map((object) => console.log(object.cases));
+  const filterRegion = (id) => {
+    const country = state.covid_data.filter((countryDetail) => countryDetail.id
+      === id);
+    return [country[0]];
+  };
+
+  const filteredState = filterRegion(id);
   return (
-    <div>
-      <div>
-        <div>
-          <h2>{state.name}</h2>
-          <p>
-            {state.cases}
-            {' '}
-            Cases
-          </p>
-          <p>in 2020-03-10</p>
+    <>
+      <div className={style.intro} key={id}>
+        <img className={style.introImg} src={filteredState[0].imgUrl} alt={filteredState[0].id} />
+        <div className={style.introDetails}>
+          <h2>{filteredState[0].country}</h2>
+
+          {filteredState[0].data[0].today_confirmed}
+          {' '}
+          Cases
+
+          <p>in 2020-10-10</p>
         </div>
       </div>
-      <p>Stated By Regions</p>
-      <ul>
-        {state.map((object) => (
-          object.id === id && (
-          <li key={object.id}>
-            <p>{object.country}</p>
-            <div>
-              <div>
-                {object.data.map((obj) => (
-                  <>
-                    <p key={obj.id}>
-                      Total Number of Confirmed Cases:
-                      {obj.today_confirmed}
+      <p className={style.mid}>Country Situation</p>
+      <ul className="situations">
+        {filteredState[0].data[0].regions.map((region, index) => (
+          <li key={region.id} className={index % 2 === 0 ? 'region light' : 'region dark'}>
+            <p key={region.id}>{region.name}</p>
 
-                    </p>
-                    <p>
-                      Total Number of New Cases:
-                      {obj.today_new_confirmed}
+            <div className={style.regCases}>
 
-                    </p>
-                    <p>
-                      New Cases Today:
-                      {obj.today_open_cases}
+              {region.today_confirmed}
+              {' '}
+              Cases
 
-                    </p>
-                    <p>
-                      Total Deaths:
-                      {obj.today_deaths}
-
-                    </p>
-                    <p>
-                      New Death Today:
-                      {obj.today_new_deaths}
-
-                    </p>
-                    <p>
-                      Recovered People Today:
-                      {obj.today_recovered}
-
-                    </p>
-                    <p>
-                      Today cases as compared to yesterday:
-                      {obj.today_vs_yesterday_confirmed}
-
-                    </p>
-
-                  </>
-                ))}
-              </div>
+              <ArrowRightCircle />
             </div>
           </li>
-          )
         ))}
       </ul>
-    </div>
+
+    </>
   );
 }

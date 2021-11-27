@@ -1,27 +1,40 @@
+import france from '../assets/france.png';
+import SouthAfrica from '../assets/SouthAfrica.png';
+import nigeria from '../assets/nigeria.png';
+import uk from '../assets/uk.png';
+import sierraLeone from '../assets/sierraLeone.png';
+import togo from '../assets/togo.png';
+
 const Countries = [
   {
-    name: 'Ghana',
+    name: 'France',
     id: 1,
+    img: france,
   },
   {
-    name: 'Nigeria',
+    name: 'Germany',
     id: 2,
+    img: nigeria,
   },
   {
-    name: 'Togo',
+    name: 'Italy',
     id: 3,
+    img: togo,
   },
   {
-    name: 'Mali',
+    name: 'South Africa',
     id: 4,
+    img: SouthAfrica,
   },
   {
-    name: 'Senegal',
+    name: 'United Kingdom',
     id: 5,
+    img: uk,
   },
   {
-    name: 'Sierra Leone',
+    name: 'Canada',
     id: 6,
+    img: sierraLeone,
   },
 ];
 

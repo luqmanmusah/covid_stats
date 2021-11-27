@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import Countries from './countries';
+import '../App.css';
 
 // Actions
 const GET_COUNTRY = 'covid_19_stats/home/GET_COUNTRY';
@@ -11,7 +12,7 @@ const initialState = {
   covid_data: [],
 };
 
-const baseUrl = 'https://api.covid19tracking.narrativa.com/api/2020-03-10/country';
+const baseUrl = 'https://api.covid19tracking.narrativa.com/api/2020-10-10/country';
 
 // Action Creators
 const getCountry = (payload) => (
@@ -40,15 +41,6 @@ const homeReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_COUNTRY:
       return { ...state, covid_data: action.payload };
-
-      // case CLEAR_COUNTRY:
-      //   return state.map((mission) => (mission.id !== action.id ? mission
-      //     : { ...mission, join: !mission.join }));
-
-    case FILTER_REGION: {
-      const country = state.filter((countryDetail) => countryDetail.id === action.id);
-      return [country[0]];
-    }
     default:
       return state;
   }
@@ -56,43 +48,22 @@ const homeReducer = (state = initialState, action) => {
 
 export const loadCountryDetail = () => {
   const request = Countries.map(async (country) => {
-    // const array = [];
-    // let outgoingData;
     const data = await axios
       .get(`${baseUrl}/${country.name}`);
-      // then((response) => {
-      // });
-    const { '2020-03-10': dates } = data.data.dates;
-    console.log(dates.countries);
+    const { '2020-10-10': dates } = data.data.dates;
     const openData = Object.entries(dates.countries).map((object) => object[1]);
-    console.log(openData);
     const outgoingData = {
       id: uuidv4(),
       data: openData,
       country: country.name,
+      region: country.region,
+      imgUrl: country.img,
 
     };
     return outgoingData;
   });
-  console.log(request);
+  // console.log(request);
   return Promise.all(request);
-
-  // return async (dispatch) => {
-  //   const req = await axios
-  //     .get(`${baseUrl}/${country.name}`)
-  //     .then((response) => {
-  //       console.log(response.data.total);
-  //       const data = {
-  //         name: response.data.total.name,
-  //         id: response.data.total.id,
-  //         regions: response.data.total.regions,
-  //         cases: response.data.total.today_confirmed,
-  //         death: response.data.total.today_deaths,
-  //       };
-  //       return data;
-  //     });
-  //   dispatch(getCountry(req));
-  // };
 };
 
 export {

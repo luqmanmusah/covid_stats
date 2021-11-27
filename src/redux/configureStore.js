@@ -17,6 +17,4 @@ const store = createStore(
   applyMiddleware(logger, thunk),
 );
 
-// store.dispatch(homeReducer());
-
 export default store;
